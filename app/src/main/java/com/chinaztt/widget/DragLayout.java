@@ -21,15 +21,17 @@ import com.nineoldandroids.view.ViewHelper;
  */
 public class DragLayout extends FrameLayout {
     private boolean isShowShadow = true;
+    //手势处理类
     private GestureDetectorCompat gestureDetector;
+    //视图拖拽移动帮助类
     private ViewDragHelper dragHelper;
     //滑动监听器
     private DragListener dragListener;
     //水平拖拽的距离
     private int range;
-    //屏幕宽度
+    //宽度
     private int width;
-    //屏幕高度
+    //高度
     private int height;
     //main视图距离在ViewGroup距离左边的距离
     private int mainLeft;
@@ -177,6 +179,10 @@ public class DragLayout extends FrameLayout {
         this.dragListener = dragListener;
     }
 
+    /**
+     * 布局加载完成回调
+     * 做一些初始化的操作
+     */
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
@@ -278,13 +284,20 @@ public class DragLayout extends FrameLayout {
      */
     private void animateView(float percent) {
         float f1 = 1 - percent * 0.3f;
+        //vg_main水平方向 根据百分比缩放
         ViewHelper.setScaleX(vg_main, f1);
+        //vg_main垂直方向，根据百分比缩放
         ViewHelper.setScaleY(vg_main, f1);
+        //沿着水平X轴平移
         ViewHelper.setTranslationX(vg_left, -vg_left.getWidth() / 2.3f + vg_left.getWidth() / 2.3f * percent);
+        //vg_left水平方向 根据百分比缩放
         ViewHelper.setScaleX(vg_left, 0.5f + 0.5f * percent);
+        //vg_left垂直方向 根据百分比缩放
         ViewHelper.setScaleY(vg_left, 0.5f + 0.5f * percent);
+        //vg_left根据百分比进行设置透明度
         ViewHelper.setAlpha(vg_left, percent);
         if (isShowShadow) {
+            //阴影效果视图大小进行缩放
             ViewHelper.setScaleX(iv_shadow, f1 * 1.4f * (1 - percent * 0.12f));
             ViewHelper.setScaleY(iv_shadow, f1 * 1.85f * (1 - percent * 0.12f));
         }

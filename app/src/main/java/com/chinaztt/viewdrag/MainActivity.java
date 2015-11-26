@@ -18,7 +18,6 @@ public class MainActivity extends BaseActivity {
 	private ListView lv;
 	private TextView tv_noimg;
 	private ImageView iv_icon, iv_bottom;
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

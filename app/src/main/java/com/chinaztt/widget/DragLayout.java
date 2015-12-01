@@ -63,6 +63,7 @@ public class DragLayout extends FrameLayout {
     class YScrollDetector extends SimpleOnGestureListener {
         @Override
         public boolean onScroll(MotionEvent e1, MotionEvent e2, float dx, float dy) {
+            Log.d("zttjiangqq","dx="+dx+",dy="+dy+",isDrag:"+isDrag);
             return (Math.abs(dy) <= Math.abs(dx)&&isDrag!=false);
         }
     }

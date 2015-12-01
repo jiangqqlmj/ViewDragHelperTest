@@ -16,8 +16,10 @@ import com.nineoldandroids.view.ViewHelper;
 public class MainActivity extends BaseActivity {
 	private DragLayout dl;
 	private ListView lv;
-	private TextView tv_noimg;
 	private ImageView iv_icon, iv_bottom;
+	public DragLayout getDl() {
+		return dl;
+	}
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -50,7 +52,6 @@ public class MainActivity extends BaseActivity {
 	private void initView() {
 		iv_icon = (ImageView) findViewById(R.id.iv_icon);
 		iv_bottom = (ImageView) findViewById(R.id.iv_bottom);
-		tv_noimg = (TextView) findViewById(R.id.iv_noimg);
 
 		lv = (ListView) findViewById(R.id.lv);
 		lv.setAdapter(new ArrayAdapter<String>(MainActivity.this,

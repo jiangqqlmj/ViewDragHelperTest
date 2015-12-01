@@ -117,13 +117,11 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             >
-            <TextView
-                android:id="@+id/iv_noimg"
-                android:layout_gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="中间内容容器..."
-                />
+           <fragment
+               android:id="@+id/main_info_fragment"
+               class="com.chinaztt.fragment.MainInfoFragment"
+               android:layout_width="fill_parent"
+               android:layout_height="fill_parent"/>
         </FrameLayout>
         </LinearLayout>
     </com.chinaztt.widget.CustomRelativeLayout>

@@ -6,6 +6,7 @@ import android.graphics.PorterDuff.Mode;
 import android.support.v4.view.GestureDetectorCompat;
 import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.GestureDetector.SimpleOnGestureListener;
 import android.view.MotionEvent;
 import android.view.View;
@@ -62,9 +63,21 @@ public class DragLayout extends FrameLayout {
     class YScrollDetector extends SimpleOnGestureListener {
         @Override
         public boolean onScroll(MotionEvent e1, MotionEvent e2, float dx, float dy) {
-            return Math.abs(dy) <= Math.abs(dx);
+            return (Math.abs(dy) <= Math.abs(dx)&&isDrag!=false);
         }
     }
+//  class YScrollDetector extends SimpleOnGestureListener {
+//    public boolean onScroll(MotionEvent e1, MotionEvent e2,
+//                            float distanceX, float distanceY) {
+//        if((Math.abs(distanceX) > Math.abs(distanceY))&&distanceX<0&&isDrag!=false&&status==Status.Close){
+//            return true;
+//        }else if((Math.abs(distanceX) > Math.abs(distanceY))&&distanceX>0&&isDrag!=false&&status==Status.Open){
+//            return true;
+//        }else {
+//            return false;
+//        }
+//    };
+//    }
 
     /**
      * 实现子View的拖拽滑动，实现Callback当中相关的方法
@@ -385,4 +398,14 @@ public class DragLayout extends FrameLayout {
         }
     }
 
+    /**
+     * 设置是否允许拖拽状态标识，默认是允许
+     */
+    private boolean isDrag = true;
+    public void setDrag(boolean isDrag) {
+        this.isDrag = isDrag;
+        if(isDrag){
+            dragHelper.abort();
+        }
+    }
 }
